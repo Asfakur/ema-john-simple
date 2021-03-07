@@ -1,9 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import fakeData from '../../fakeData';
+import { getDatabaseCart } from '../../utilities/databaseManager';
 
 const Review = () => {
+
+    // const {cart, setCart} = useState([]); this will be array
+    const [cart, setCart] = useState([]);
+
+    useEffect( () => {
+        //cart
+        const savedCart = getDatabaseCart();
+        const productKeys = Object.keys(savedCart);
+        const cartProducts = productKeys.map(key => {
+            const product = fakeData.find(pd => pd.key === key);
+            product.quantity = savedCart[key]; //add new property as quantity to every object
+            return product;
+            
+        });
+        setCart(cartProducts);
+    }, [])
     return (
         <div>
-            <h1>This is review</h1>
+            <h1>Cart Items : {cart.length}</h1>
         </div>
     );
 };
