@@ -13,6 +13,8 @@ const Shop = () => {
     //cart state
     const [cart, setCart] =useState([]);
 
+    document.title = 'Shop';
+
     useEffect(() => {
         const savedCart = getDatabaseCart();
         const productKeys = Object.keys(savedCart);

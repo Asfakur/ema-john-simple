@@ -8,6 +8,8 @@ const ProductDetail = () => {
     const [loading, setLoading] = useState(true);
     const [product, setProduct] = useState({});
 
+    document.title = 'Product Digital';
+
     useEffect( () => {
         fetch('/products/'+ productKey)
         .then(res => res.json())
